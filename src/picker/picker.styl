@@ -1,0 +1,111 @@
+@import "../util/mixin.styl"
+
+.picker
+  display: none
+  position: fixed
+  top: 0
+  z-index: 100
+  width: 100%
+  height: 100%
+  overflow: hidden
+  text-align: center
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback'
+  font-size: px2rem(14)
+  unselectable()
+  .picker-mask
+    position: absolute
+    z-index: 500
+    width: 100%
+    height: 100%
+    transition: all 0.5s
+    -webkit-transition: all 0.5s
+    background: rgba(0, 0, 0, 0)
+    opacity: 0
+    &.show
+      background: rgba(0, 0, 0, 0.6)
+      opacity: 1
+  .picker-panel
+    position: absolute
+    z-index: 600
+    bottom: 0
+    width: 100%
+    height: px2rem(243)
+    background: #fff
+    transform: translateY(px2rem(243))
+    -webkit-transform: translateY(px2rem(243))
+    transition: all 0.5s
+    -webkit-transition: all 0.5s
+    &.show
+      transform: translateY(0)
+      -webkit-transform: translateY(0)
+    .picker-choose
+      position: relative
+      height: px2rem(50)
+      color: #878787
+      font-size: px2rem(14)
+      .picker-title
+        line-height: px2rem(50)
+        font-size: px2rem(19)
+        text-align: center
+        color: #333
+      .confirm, .cancel
+        position: absolute
+        padding: px2rem(10)
+        top: px2rem(6)
+      .confirm
+        right: 0
+        color: #fa8919
+      .cancel
+        left: 0
+    .picker-content
+      position: relative
+      .mask-top, .mask-bottom
+        position: absolute
+        z-index: 10
+        width: 100%
+        height: px2rem(68)
+        pointer-events: none
+        transform: translateZ(0)
+        -webkit-transform: translateZ(0)
+      .mask-top
+        border-bottom-1px(#ccc)
+        top: 0
+        gradient-from-bottom(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8))
+      .mask-bottom
+        border-top-1px(#ccc)
+        bottom: 0
+        gradient-from-top(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8))
+    .wheel-wrapper
+      flex-box()
+      padding: 0 px2rem(10)
+      .wheel
+        flex()
+        height: px2rem(173)
+        overflow: hidden
+        font-size: px2rem(21)
+        .wheel-scroll
+          margin-top: px2rem(68)
+          line-height: px2rem(36)
+          .wheel-item
+            height: px2rem(36)
+            overflow: hidden
+            white-space: nowrap
+            color: #333
+  .picker-footer
+    height: px2rem(20)
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5)
+  .border-1px
+    &::after, &::before
+      -webkit-transform: scaleY(.7)
+      -webkit-transform-origin: 0 0
+      transform: scaleY(.7)
+    &::after
+      -webkit-transform-origin: left bottom
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2)
+  .border-1px
+    &::after, &::before
+      -webkit-transform: scaleY(.5)
+      transform: scaleY(.5)
+
